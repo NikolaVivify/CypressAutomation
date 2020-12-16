@@ -1,12 +1,30 @@
+import registrationModel from './registrationPageModel'
+import LoginModel from './registrationPageModel'
+
 describe('Registration testovi', () => {
+
+var registration = new registrationModel();
+
+/*function getRandomEmail() {
+    
+    var random_number = Math.floor(Math.random() * (100000, 999999));
+
+    var email = (random_number+'@gmail.com');
+
+    return email.toString();
+}*/
+
+function randomEmail() {
+    return (
+      Math.random()
+        .toString(36)
+        .substring(2, 11) + '@gmail.com'
+    );
+    }
+var random_email = randomEmail();
+
     it('Poseti stranicu', () => {
-        cy.visit('https://gallery-app.vivifyideas.com/register')
-        cy.get('#first-name').type('ime')
-        cy.get('#last-name').type('prezime')
-        cy.get('#email').type('something423423@gmail.com')
-        cy.get('#password').type('12345678')
-        cy.get('#password-confirmation').type('12345678')
-        cy.get('.form-check-input').check()
-        cy.get('.btn').click()
+        registration.visitRegistrationPage()
+        registration.registerUser('ime', 'prezime', random_email, '12345678', '12345678')
     })
 })

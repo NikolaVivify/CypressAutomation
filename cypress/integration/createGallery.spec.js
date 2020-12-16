@@ -1,30 +1,32 @@
-
+import LoginModel from './registrationPageModel'
+import GalleryPage from './galleryPageModel'
+import loginModel from './loginPageModel'
+import MainPage from './mainPageModel'
+import createGallery from './createGalleryPageModel'
 
 describe('Kreiranje galerije test', () =>{
 
+    const login = new loginModel();
+    const gallery = new GalleryPage();
+    const main = new MainPage();
+    const create = new createGallery();
 
    it('Login', () => {
-        cy.visit('https://gallery-app.vivifyideas.com/')
-        cy.get('a[href="/login"]').click()
-        cy.get('#email').type('something423423@gmail.com')
-        cy.get('#password').type('12345678')
-        cy.get('button').click()
+        main.visitMainPage()
+        main.clickLoginButton()
+        login.loginUser('something423423@gmail.com', '12345678')
     })
 
     it('Kreiranje galerije', () => {
-        cy.get('a[href="/create"]').click()
-        cy.get('#title').type('Cy gallery')
-        cy.get('#description').type('Cy test')
-        cy.get('.form-control').eq(2).type('https://www.hollandamerica.com/content/dam/hal/marketing-assets/home-page/special-offers/greece-santorini-blue-domes-C031.jpg.image.1008.754.low.jpg')
-        cy.get('.btn').eq(0).click()
+        main.clickCreateGallery()
+        create.createGallery('Cy gallery', 'Cy test', 'https://www.hollandamerica.com/content/dam/hal/marketing-assets/home-page/special-offers/greece-santorini-blue-domes-C031.jpg.image.1008.754.low.jpg')
         cy.get('.title-style').should('be.visible').and('have.text', "All Galleries")
     })
 
     
     it('Brisanje galerije', () => {
-        cy.get('.box-title').eq(0).click()
+        main.clickFirstGallery()
         cy.get('.btn').should('have.length', 3)
-        cy.get('.btn').eq(0).click()
-        
+        gallery.clickDeleteGallery()        
     })
 })
