@@ -2,42 +2,38 @@ class loginModel
 {
 //Getters
 
-    email()
+    get email()
     {
         return cy.get('#email')
     }
 
-    password()
+    get password()
     {
         return cy.get('#password')
     }
 
-    submit() 
+    get submit() 
     {
-        return cy.get('div:nth-child(2) div.container:nth-child(2) div:nth-child(1) form:nth-child(2) > button.btn.btn-custom:nth-child(3)')
+        return cy.get('button[type="submit"]')
     }
 
 
 //Actions
 
-    loginButtonClick () 
-    {
-        this.loginButton().click()
-    }
 
     fillEmail (text)
     {
-        this.email().type(text)
+        this.email.type(text)
     }
 
     fillPassword (text)
     {
-        this.password().type(text)
+        this.password.type(text)
     }
 
     clickSubmit()
     {
-        this.submit().click()
+        this.submit.click()
     }
 
     loginUser(email, password)
@@ -48,4 +44,4 @@ class loginModel
     }
 }
 
-export default loginModel
+export const login = new loginModel()

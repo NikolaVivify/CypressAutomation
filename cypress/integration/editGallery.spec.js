@@ -1,7 +1,7 @@
-import GalleryPage from './galleryPageModel'
-import loginModel from './loginPageModel'
-import MainPage from './mainPageModel'
-import createGallery from './createGalleryPageModel'
+import GalleryPage from '../Models/galleryPageModel'
+import loginModel from '../Models/loginPageModel'
+import MainPage from '../Models/mainPageModel'
+import createGallery from '../Models/createGalleryPageModel'
 
 
 describe('edit functionality', () => {

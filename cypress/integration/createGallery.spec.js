@@ -1,15 +1,11 @@
-import LoginModel from './registrationPageModel'
-import GalleryPage from './galleryPageModel'
-import loginModel from './loginPageModel'
-import MainPage from './mainPageModel'
-import createGallery from './createGalleryPageModel'
+import {gallery} from '../Models/galleryPageModel'
+import {login} from '../Models/loginPageModel'
+import {main} from '../Models/mainPageModel'
+import {create} from '../Models/createGalleryPageModel'
+
 
 describe('Kreiranje galerije test', () =>{
 
-    const login = new loginModel();
-    const gallery = new GalleryPage();
-    const main = new MainPage();
-    const create = new createGallery();
 
    it('Login', () => {
         main.visitMainPage()
@@ -23,10 +19,20 @@ describe('Kreiranje galerije test', () =>{
         cy.get('.title-style').should('be.visible').and('have.text', "All Galleries")
     })
 
+    it('post comment', () => {
+        main.clickFirstGallery()
+        cy.get('textarea').should('be.visible')
+        gallery.fillTextField('Cy comment')
+        gallery.clickSubmitButton()
+    })
+
+    it('Delete comment', () => {
+        gallery.clickDeleteComment()
+    })
+
     
     it('Brisanje galerije', () => {
-        main.clickFirstGallery()
         cy.get('.btn').should('have.length', 3)
-        gallery.clickDeleteGallery()        
+        gallery.clickDeleteGallery()
     })
 })

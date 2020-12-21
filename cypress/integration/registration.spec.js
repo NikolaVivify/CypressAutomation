@@ -1,9 +1,18 @@
-import registrationModel from './registrationPageModel'
-import LoginModel from './registrationPageModel'
+import {registration} from '../Models/registrationPageModel'
+
+const faker = require('faker')
+
+const userData = {
+    randomName : faker.name.firstName(),
+    randomLastName : faker.name.lastName(),
+    randomEmail : faker.internet.email(),
+    randomPassword : faker.internet.password()
+
+}
+
 
 describe('Registration testovi', () => {
 
-var registration = new registrationModel();
 
 /*function getRandomEmail() {
     
@@ -14,17 +23,17 @@ var registration = new registrationModel();
     return email.toString();
 }*/
 
-function randomEmail() {
+/*function randomEmail() {
     return (
       Math.random()
         .toString(36)
         .substring(2, 11) + '@gmail.com'
     );
     }
-var random_email = randomEmail();
+var random_email = randomEmail();*/
 
     it('Poseti stranicu', () => {
         registration.visitRegistrationPage()
-        registration.registerUser('ime', 'prezime', random_email, '12345678', '12345678')
+        registration.registerUser(userData.randomName, userData.randomName, userData.randomEmail, userData.randomPassword, userData.randomPassword)
     })
 })

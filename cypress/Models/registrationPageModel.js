@@ -2,81 +2,81 @@ class registrationModel
 {
 //Getters
 
-    visitRegistrationPage()
+    get visitRegistrationPage()
     {
         return cy.visit('/register')
     }
 
-    firstName()
+    get firstName()
     {
         return cy.get('#first-name')
     }
 
-    lastName()
+    get lastName()
     {
         return cy.get('#last-name')
     }
 
-    email()
+    get email()
     {
         return cy.get('#email')
     }
 
-    password()
+    get password()
     {
         return cy.get('#password')
     }
 
-    confirmPassword()
+    get confirmPassword()
     {
         return cy.get('#password-confirmation')
     }
 
-    checkbox()
+    get checkbox()
     {
-        return cy.get('div.container:nth-child(2) div:nth-child(1) form:nth-child(2) div.form-group:nth-child(6) > input.form-check-input')
+        return cy.get('input[type="checkbox"]')
     }
 
-    submitButton()
+    get submitButton()
     {
-        return cy.get('div:nth-child(2) div.container:nth-child(2) div:nth-child(1) form:nth-child(2) > button.btn.btn-custom:nth-child(7)')
+        return cy.get('button[type="submit"]')
     }
 
 //Actions
 
     fillFirstName(text)
     {
-        this.firstName().type(text)
+        this.firstName.type(text)
     }
 
     fillLastName(text)
     {
-        this.lastName().type(text)
+        this.lastName.type(text)
     }
 
     fillEmail(text)
     {
-        this.email().type(text)
+        this.email.type(text)
     }
 
     fillPassword(text)
     {
-        this.password().type(text)
+        this.password.type(text)
     }
 
     fillConfirmPassword(text)
     {
-        this.confirmPassword().type(text)
+        this.confirmPassword.type(text)
     }
 
     checkboxConfirm()
     {
-        this.checkbox().check()
+        this.checkbox.check()
     }
 
     clickSubmitButton()
     {
-        this.submitButton().click()
+        this.submitButton.click()
     }
 
 
@@ -92,4 +92,4 @@ class registrationModel
     }
 }
 
-export default registrationModel
+export const registration = new registrationModel()

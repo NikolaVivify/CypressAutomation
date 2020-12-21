@@ -1,22 +1,26 @@
+import {gallery} from '../Models/galleryPageModel'
+import {login} from '../Models/loginPageModel'
+import {main} from '../Models/mainPageModel'
+
+    
+
 describe('comment tests', () => {
 
     it('Login', () => {
-        cy.visit('https://gallery-app.vivifyideas.com/')
-        cy.get('a[href="/login"]').click()
-        cy.get('#email').type('something423423@gmail.com')
-        cy.get('#password').type('12345678')
-        cy.get('button').click()
+        main.visitMainPage()
+        main.clickLoginButton()
+        login.loginUser('something423423@gmail.com', '12345678')
     })
 
 
     it('post comment', () => {
-        cy.get('.box-title').eq(0).click()
+        main.clickFirstGallery()
         cy.get('textarea').should('be.visible')
-        cy.get('textarea').type('Cy comment')
-        cy.get('button[type="submit"]').click()
+        gallery.fillTextField('Cy comment')
+        gallery.clickSubmitButton()
     })
 
     it('Delete comment', () => {
-        cy.get('.fas').click()
+        gallery.clickDeleteComment()
     })
 })
